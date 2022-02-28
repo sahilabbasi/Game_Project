@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="car1.png" type="image/x-icon">
+    <title>Car Racing Game</title>
+</head>
+
+<body>
+
+    <p id="score"></p>
+
+    <h1>Car Racing Game</h1>
+
+    <div id="container">
+
+        <img id="car1" src="car1.png" alt="car1" srcset="">
+        <img id="car2" src="car2.jpg" alt="car2" srcset="">
+        <!-- <img id="road" src="road.png" alt="" srcset=""> -->
+    </div>
+
+    <style>
+        h1 {
+            color: blue;
+            margin-left: 500px;
+            font-family: 'Courier New', Courier, monospace;
+            font-style: italic;
+        }
+
+        body {
+            background-color: black;
+        }
+
+
+
+        #car1 {
+            transform: rotate(180deg);
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            margin-left: 380px;
+            margin-bottom: 900px;
+            position: relative;
+            bottom: 100px;
+            animation-name: car1;
+            animation-duration: 5s;
+            animation-iteration-count: infinite;
+        }
+
+        @keyframes car1 {
+
+            0% {
+                top: 0px;
+            }
+
+            25% {
+                top: 50px;
+            }
+
+            50% {
+                top: 100px;
+            }
+
+            70% {
+                top: 150px;
+            }
+
+            80% {
+                top: 200px;
+            }
+
+            100% {
+                top: 240px;
+            }
+
+        }
+
+        #car2 {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            right: 670px;
+            top: 500px
+        }
+
+        .moving_car2_to_right {
+            animation-name: moving_car2_to_right;
+            animation-duration: 3s;
+            animation-iteration-count: 1;
+        }
+
+        @keyframes moving_car2_to_right {
+            0% {}
+
+            30% {
+                right: 100px;
+            }
+
+            40% {
+                right: 200px;
+            }
+
+            50% {
+                right: 300px;
+            }
+
+            60% {
+                right: 400px;
+            }
+
+            80% {
+                right: 500px;
+            }
+
+            100% {
+                right: 620px;
+            }
+        }
+
+        .moving_car2_to_left {
+            animation-name: moving_car2_to_left;
+            animation-duration: 3s;
+            animation-iteration-count: 1;
+        }
+
+        @keyframes moving_car2_to_left {
+            0% {}
+
+            20% {
+                left: 50px;
+            }
+
+            30% {
+                left: 100px;
+            }
+
+            40% {
+                left: 150px;
+            }
+
+            50% {
+                left: 200px;
+            }
+
+            80% {
+                left: 250px;
+            }
+
+            100% {
+                left: 300px;
+            }
+
+        }
+
+
+        #container {
+            border: 1px solid red;
+            width: 1000px;
+            height: 1000px;
+            margin: auto;
+            background-image: url("road.png");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position-x: center;
+        }
+    </style>
+
+    <script>
+
+
+
+        window.onload = () => {
+
+
+
+            window.addEventListener("keydown", (e) => {
+
+
+
+                if (e.key == "ArrowRight") {
+                    car2 = document.getElementById("car2");
+
+                    //    car2.style.left = "700px";
+                    car2.classList.add("moving_car2_to_right")
+
+                    setTimeout(() => {
+                        car2.classList.remove("moving_car2_to_right")
+                        console.log(1)
+                    }, 3000)
+                }
+                else if (e.key == "ArrowLeft") {
+                    // car2.style.left = "470px";
+
+
+                    car2.classList.add("moving_car2_to_left")
+
+                    setTimeout(() => {
+                        car2.classList.remove("moving_car2_to_left")
+                        console.log(1)
+                    }, 3000)
+
+
+                }
+
+
+
+
+
+
+            })
+
+            // detect collion
+
+
+            let gameover = false
+            let scroce = document.getElementById("score");
+
+
+            let num = 0
+
+            function test() {
+                scrocing = scroce.innerHTML = "YOU'RE SCORE IS  => " + num++
+
+            }
+
+
+            setInterval(() => {
+
+                let car1 = document.getElementById("car1");
+                
+                let car2 = document.getElementById("car2");
+
+               car1 =parseInt(window.getComputedStyle(car1,null).getPropertyValue("top"));
+
+               car2right = parseInt(window.getComputedStyle(car2,null).getPropertyValue("right"));
+
+               car2left = parseInt(window.getComputedStyle(car2,null).getPropertyValue("left"));
+               
+               console.log(car2left)
+
+                if (car1 > 200 && car2right === 670 && car2left === 579) {
+                    gameover = true
+                    scroce.innerHTML = "GAMEOVER MY DEAR"
+                    alert("GAME OVER " + "You're Score Is =>" + scrocing)
+                    location.reload();
+                }
+                else {
+
+                    //scoring code here
+
+
+
+                    scroce.style.color = "YELLOW";
+
+
+
+                    test()
+                }
+
+
+            }, 1000)
+
+
+
+        }
+
+
+
+
+    </script>
+
+
+
+
+    <embed
+        src="https://dm0qx8t0i9gc9.cloudfront.net/watermarks/audio/S2O4GbbeUk52szlol/audioblocks-new-beginning_S22ANkzXU_WM.mp3"
+        loop="true" autostart="true" width="2" height="0">
+
+    <embed src="test.mp3" loop="true" autostart="true" width="2" height="0">
+
+
+</body>
+
+</html>
