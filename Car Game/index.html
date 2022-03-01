@@ -13,7 +13,12 @@
 
     <p id="score"></p>
 
-    <h1>Car Racing Game</h1>
+    <embed
+        src="https://dm0qx8t0i9gc9.cloudfront.net/watermarks/audio/S2O4GbbeUk52szlol/audioblocks-new-beginning_S22ANkzXU_WM.mp3"
+        loop="true" autostart="true" width="0" height="0" id="music">
+
+
+    <h1 id="hello">Car Racing Game</h1>
 
     <div id="container">
 
@@ -230,18 +235,18 @@
             setInterval(() => {
 
                 let car1 = document.getElementById("car1");
-                
+
                 let car2 = document.getElementById("car2");
 
-               car1 =parseInt(window.getComputedStyle(car1,null).getPropertyValue("top"));
+                car1 = parseInt(window.getComputedStyle(car1, null).getPropertyValue("top"));
 
-               car2right = parseInt(window.getComputedStyle(car2,null).getPropertyValue("right"));
+                car2right = parseInt(window.getComputedStyle(car2, null).getPropertyValue("right"));
 
-               car2left = parseInt(window.getComputedStyle(car2,null).getPropertyValue("left"));
-               
-               console.log(car2left)
+                car2left = parseInt(window.getComputedStyle(car2, null).getPropertyValue("left"));
 
-                if (car1 > 200 && car2right === 670 && car2left === 579) {
+                console.log(car1)
+
+                if (car1 > 200 && car2right === 670 && car2left === 579 || car1 === 200) {
                     gameover = true
                     scroce.innerHTML = "GAMEOVER MY DEAR"
                     alert("GAME OVER " + "You're Score Is =>" + scrocing)
@@ -264,22 +269,30 @@
             }, 1000)
 
 
+            // detch the user is online or not 
+
+
+
+            if (navigator.onLine) {
+                let music = document.getElementById("music");
+                music.style.visibility = "visible";
+                console.log("true hai");
+            }
+            else {
+                music.remove();
+                console.log("false hai");
+            }
+
 
         }
 
 
-
+        alert("Welcome To This Car Racing Game\n \n I Hope You'll Enjoy It :)")
 
     </script>
 
 
 
-
-    <embed
-        src="https://dm0qx8t0i9gc9.cloudfront.net/watermarks/audio/S2O4GbbeUk52szlol/audioblocks-new-beginning_S22ANkzXU_WM.mp3"
-        loop="true" autostart="true" width="2" height="0">
-
-    <embed src="test.mp3" loop="true" autostart="true" width="2" height="0">
 
 
 </body>
