@@ -286,8 +286,12 @@
 
         }
 
-
+        var firstTime = sessionStorage.getItem("first_time");
+if(!firstTime) {
+    // first time loaded!
+    sessionStorage.setItem("first_time","1");
         alert("Welcome To This Car Racing Game\n \n I Hope You'll Enjoy It :)")
+}
 
     </script>
 
