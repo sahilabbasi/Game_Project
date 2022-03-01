@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dino Game For Kids :) </title>
+    <link rel="shortcut icon" href="mario.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Shizuru&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <h1 id="title">DINO GAMES FOR TEENAGERS</h1>
+
+    <img src="dino.jpg" alt="" id="dino">
+    <img src="mario.png" alt="" id="mario">
+
+
+
+    <style>
+        #dino {
+            width: 100px;
+            height: 100px;
+            top: 400px;
+            position: relative;
+            left: 200px;
+        }
+
+        #mario {
+            width: 90px;
+            height: 90px;
+            top: 400px;
+            left: 1000px;
+            position: relative;
+            -webkit-transform: scaleX(-1);
+            transform: scaleX(-1);
+            animation-name: mario;
+            animation-duration: 4s;
+            animation-iteration-count: infinite;
+            animation-fill-mode: ease-in-out;
+
+        }
+
+        @keyframes mario {
+            from {
+                left: 1000px;
+            }
+
+            to {
+                left: -110px
+            }
+
+        }
+
+        #title {
+            color: yellow;
+            font-family: 'Shizuru', cursive;
+            font-style: italic;
+            text-align: center;
+            text-overflow: clip;
+            text-decoration-line: underline;
+            text-decoration-style: dashed;
+            text-rendering: geometricPrecision;
+            animation: glow 1s ease-in-out infinite alternate;
+        }
+
+        /* copy from w3school  https://www.w3schools.com/howto/howto_css_glowing_text.asp*/
+        @-webkit-keyframes glow {
+            from {
+                text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #021bff, 0 0 40px #4c00ff, 0 0 50px #3e0afa, 0 0 60px #041dff, 0 0 70px #1900ff;
+            }
+
+            to {
+                text-shadow: 0 0 20px #fff, 0 0 30px #7c4dff, 0 0 40px #3f09ff, 0 0 50px #0011ff, 0 0 60px #002fff, 0 0 70px #2f00ff, 0 0 80px #1100ff;
+            }
+        }
+
+        body {
+            background-color: black;
+        }
+    </style>
+
+
+    <script>
+
+
+        let dino = document.getElementById("dino");
+        let mario = document.getElementById("mario")
+
+
+        document.addEventListener("keydown", (event) => {
+
+            // if (event.key == "ArrowRight") {
+
+
+            //     dino.style.left = num += 1000, "px";
+
+
+            //     // value = dino.getAttribute("style").slice(6);
+
+            //     // dino.style.left = ++value+"px";
+
+            //     console.log(1)
+            // }
+
+            if (event.keyCode == 39) {
+
+                dinoX = parseInt(window.getComputedStyle(dino, null).getPropertyValue('left'));
+
+
+                dino.style.left = dinoX + 112 + "px";
+
+
+                if (dinoX > 850) {
+                    dino.style.left = 900 + "px";
+                }
+
+            }
+
+            else if (event.keyCode == 37) {
+                // dino.style.left = --num + "px";
+
+                dinoX = parseInt(window.getComputedStyle(dino, null).getPropertyValue("left"));
+
+                dino.style.left = dinoX - 100 + "px";
+                // console.log(dinoX)
+
+                if (dinoX === 200 || dinoX < 100) {
+                    // dino.removeAttribute("style");
+                    dino.style.left = 200 + "px";
+                }
+
+            }
+
+            else if (event.keyCode === 38) // means jumps
+            {
+                dino.style.top = 280 + "px";
+                setTimeout(() => {
+                    // dino.removeAttribute("style");
+                    dino.style.top = 400 + "px";
+                }, 1000);
+            }
+
+        })
+
+
+        // detch collison in two object
+
+        setInterval(() => {
+
+            //             let dinoleft = dino.getBoundingClientRect()
+            //         dinoleft = dinoleft.left
+
+            //         let dinotop = dino.getBoundingClientRect();
+            //         dinotop = dinotop.top;
+
+
+            //         let marioleft = mario.getBoundingClientRect();
+            //         marioleft = marioleft.left;
+
+            //         let mariotop = mario.getBoundingClientRect();
+            //         mariotop = mariotop.top;
+
+            //         let x = dinoleft - marioleft;
+
+            //         let y = dinotop - mariotop;
+
+            //       distance = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
+
+            //       console.log(Math.ceil(distance));
+
+            //       if(distance==15)
+            //       {
+            // alert()
+            //       }
+
+            // dino1= document.getElementById("mario").getBoundingClientRect();
+
+            // dino1 =Math.floor(dino1.left)
+
+            // mario1 = document.getElementById("mario").getBoundingClientRect();
+            // mario1= Math.floor(mario1.left)
+
+
+            let dinoleft = parseInt(window.getComputedStyle(dino, null).getPropertyValue("left"))
+            let dinotop = parseInt(window.getComputedStyle(dino, null).getPropertyValue("top"));
+
+            let marioleft = parseInt(window.getComputedStyle(mario, null).getPropertyValue("left"));
+            let mariotop = parseInt(window.getComputedStyle(mario, null).getPropertyValue("top"))
+
+            console.log("Mario left", marioleft)
+            // console.log("dino left ", dinoleft)
+
+            if (marioleft < 130 && marioleft > 1 && mariotop === 400 && dinotop === 400 && dinoleft === 200) {
+                alert("Game Over :(")
+            }
+            else if (dinoleft == 312 && marioleft < 120 && marioleft > 1) {
+                alert()
+            }
+
+            // x = Math.abs(dinox - mariox)
+            // y = Math.abs(dinoy - marioy)
+
+            // console.log(x);
+
+
+            // if (x < 100 && y < 52) {
+            //     alert()
+            // }
+
+        }, 1000);
+
+
+
+    </script>
+
+</body>
+
+</html>
