@@ -214,6 +214,23 @@ body
 }
 
 </style>
-    
+
+
+
+<script>
+
+
+let x = sessionStorage.getItem("new_user")
+
+if(!x || x === null)
+{
+    sessionStorage.setItem("new_user","1");
+alert("I Hope You'll Enjoyed This Game :)")
+}
+
+
+</script>
+
+
 </body>
 </html>
